@@ -1,4 +1,5 @@
 # This file will be used to write to the RFID tags
+# Data written is a file path to the product related to the tag
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
@@ -7,9 +8,9 @@ def main():
     reader = SimpleMFRC522()
 
     try:
-        text = input('New data: ')
+        file = input('New data: ')
         print("Now place your tag to write")
-        reader.write(text)
+        reader.write(file)
         print("Written")
 
     finally:
