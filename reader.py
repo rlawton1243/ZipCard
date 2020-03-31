@@ -2,6 +2,7 @@
 import csv
 
 import RPi.GPIO as GPIO
+from PIL import Image
 from mfrc522 import SimpleMFRC522
 
 
@@ -28,7 +29,13 @@ def process_csv(file):
                 print(f'Column names are {", ".join(row)}')
                 line_count += 1
             else:
-                print(f'\tProduct: {row[0]}, Price: {row[1]}, Nutrition facts link: {row[2]}')
+                print(f'\tProduct: {row[0]}, Price: {row[1]}, Nutrition facts: {row[2]}')
+                image_path = row[2]
+                try:
+                    img = Image.open(row[2])
+                    img.show()
+                except IOError:
+                    print("Unable to retrieve nutrition facts")
                 line_count += 1
 
 
