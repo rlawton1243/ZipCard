@@ -1,6 +1,7 @@
 # This file reads data from the tags
 import csv
 import threading
+import time
 import tkinter as tk
 
 import RPi.GPIO as GPIO
@@ -25,7 +26,7 @@ class GuiInfo:
 
 
 def main():
-    window = tk.Tk()
+    window = tk.Toplevel()
     window.title("ZipCard")
     window.geometry("500x600")
     window.configure(background='grey')
@@ -70,6 +71,8 @@ def process_csv(file, info: GuiInfo):
                 except IOError:
                     print("Unable to retrieve nutrition facts")
                 line_count += 1
+        time.sleep(1)
+        main()
 
 
 if __name__ == '__main__':
